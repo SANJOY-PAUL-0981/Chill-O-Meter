@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import './App.css'
 import chillGuy from "../src/assets/chillGuy.jpg";
+import NavBar from './ui/NavBar';
 
 function App() {
   return (
     <>
-      <div className='flex justify-center items-center h-screen'>
+      <NavBar />
+      <div className='flex justify-center items-center h-[85vh]'>
         <div className="border-2 border-amber-800/20 w-[80vw] h-[80vh] rounded-3xl flex justify-between items-center p-14 gap-10 shadow-[-10px_-10px_30px_4px_rgba(171,130,97,0.1),_10px_10px_30px_4px_rgba(171,130,97,0.45)]">
 
           {/*Hero Text*/}
