@@ -5,12 +5,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      fontFamily:{
-        fontChillOne: [ "Rampart One" ],
-        fontChillTwo: [ "Indie Flower" ]
-      }
-    },
+    extend: {},
   },
   plugins: [],
 }
