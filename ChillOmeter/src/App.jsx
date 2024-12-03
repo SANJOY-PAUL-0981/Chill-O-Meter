@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import chillGuy from "../src/assets/chillGuy.jpg";
 import NavBar from './ui/NavBar';
+import Footer from './ui/Footer';
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
           <button className='font-fontChillOne h-20 w-40 hover:shadow-[-10px_-10px_30px_4px_rgba(171,130,97,0.1),_10px_10px_30px_4px_rgba(171,130,97,0.15)] transition-all duration-200 border-4 rounded text-2xl text-center border-[#ab8261] bg-[#ffffff]'>Let's Chill</button>
         </div>
       </div>
+
+      {/*Footer*/}
+      <Footer />
     </>
   )
 }
