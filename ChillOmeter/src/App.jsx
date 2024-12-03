@@ -22,9 +22,9 @@ function App() {
             </div>
 
             {/*Button*/}
-            <button className='font-fontChillTwo text-xl text-blue-500 font-semibold underline'>
+            <a href="#input" className='font-fontChillTwo text-xl text-blue-500 font-semibold underline'>
               Click Here <span className='font-fontChillOne'>!</span>
-            </button>
+            </a>
           </div>
 
           {/*Hero Img*/}
@@ -38,7 +38,7 @@ function App() {
       {/*Input Area*/}
       <div className='h-[70vh] flex justify-center items-center'>
         <div className='flex items-center gap-5'>
-          <input type="text" className='border-black/70 border-[1.55px] h-20 w-[40vw] p-5 text-xl font-fontChillTwo' />
+          <input id='input' type="text" className='border-black/70 border-[1.55px] h-20 w-[40vw] p-5 text-xl font-fontChillTwo' />
           <button className='font-fontChillOne h-20 w-40 border-4 rounded text-2xl text-center border-[#ab8261] bg-[#ffffff]'>Let's Chill</button>
         </div>
       </div>
