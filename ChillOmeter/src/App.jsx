@@ -7,9 +7,9 @@ import { fetchUserID } from "./fetchUserID";
 import { fetchTweets } from "./fetchTweets"; 
 
 function App() {
-  const [username, setUsername] = useState(""); // store the input username
+  const [username, setUsername] = useState("");
 
-  // fetch user ID and tweets
+  {/*fetch user ID and tweets*/}
   const handleFetchData = async () => {
     if (!username) {
       alert("Please enter a username!");
@@ -17,11 +17,11 @@ function App() {
     }
 
     try {
-      // Fetch User ID
+      {/*Fetch User ID*/}
       const userId = await fetchUserID(username);
       console.log("Fetched User ID:", userId);
 
-      // Fetch Tweets 
+      {/*Fetch Tweets */}
       const tweetsList = await fetchTweets(userId);
       console.log(tweetsList); 
     } catch (error) {
@@ -77,7 +77,7 @@ function App() {
             onClick={handleFetchData} 
             className="font-fontChillOne h-20 w-40 hover:shadow-[-10px_-10px_30px_4px_rgba(171,130,97,0.1),_10px_10px_30px_4px_rgba(171,130,97,0.15)] transition-all duration-200 border-4 rounded text-2xl text-center border-[#ab8261] bg-[#ffffff]"
           >
-            Fetch Tweets
+            Let's Chill
           </button>
         </div>
       </div>
