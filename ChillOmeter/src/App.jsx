@@ -7,7 +7,7 @@ import { fetchUserID } from "./fetchUserID";
 import { fetchTweets } from "./fetchTweets"; 
 
 function App() {
-  const [username, setUsername] = useState(""); //store the input username
+  const [username, setUsername] = useState(""); // store the input username
 
   // fetch user ID and tweets
   const handleFetchData = async () => {
@@ -21,9 +21,9 @@ function App() {
       const userId = await fetchUserID(username);
       console.log("Fetched User ID:", userId);
 
-      // Fetch Tweets using User ID
+      // Fetch Tweets 
       const tweetsList = await fetchTweets(userId);
-      console.log("Fetched Tweets:", tweetsList); // Log tweets in the console
+      console.log(tweetsList); 
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -69,15 +69,15 @@ function App() {
             id="input"
             type="text"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)} 
             placeholder="Enter Twitter username"
             className="border-black/70 focus:outline-none focus:border-2 focus:shadow-[-10px_-10px_30px_4px_rgba(171,130,97,0.1),_10px_10px_30px_4px_rgba(171,130,97,0.15)] transition-all duration-300 focus:border-[#d8b69a] border-[1.55px] h-20 w-[40vw] p-5 text-xl font-fontChillTwo"
           />
           <button
-            onClick={handleFetchData} // Fetch data
+            onClick={handleFetchData} 
             className="font-fontChillOne h-20 w-40 hover:shadow-[-10px_-10px_30px_4px_rgba(171,130,97,0.1),_10px_10px_30px_4px_rgba(171,130,97,0.15)] transition-all duration-200 border-4 rounded text-2xl text-center border-[#ab8261] bg-[#ffffff]"
           >
-            Let's Chill
+            Fetch Tweets
           </button>
         </div>
       </div>

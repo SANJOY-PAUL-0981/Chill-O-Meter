@@ -14,15 +14,15 @@ export async function fetchTweets(userId) {
   try {
     const response = await axios.request(options);
 
-    // Extract tweets[0] to tweets[10]
+    // Extract
     const tweetsText = response.data.tweets
-      .slice(0, 14) // Get the first 10 tweets
+      .slice(0, 14)
       .map((tweet) => tweet.content.itemContent.tweet_results.result.legacy.full_text)
-      .join("\n\n");
+      .join("\n\n"); // Join
 
-    return tweetsText; // Return the tweets text
+    return tweetsText;
   } catch (error) {
-    console.error("Error fetching tweets:", error);
+    console.error("Error fetching tweets:", error.message);
     throw error;
   }
 }
