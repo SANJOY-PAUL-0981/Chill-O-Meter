@@ -3,8 +3,8 @@ import "./App.css";
 import chillGuy from "../src/assets/chillGuy.jpg";
 import NavBar from "./ui/NavBar";
 import Footer from "./ui/Footer";
-import { fetchUserID } from "../fetchUserID"; 
-import { fetchTweets } from "../fetchTweets"; 
+import { fetchUserID } from "./fetchUserID"; 
+import { fetchTweets } from "./fetchTweets"; 
 
 function App() {
   const [username, setUsername] = useState(""); //store the input username
@@ -69,12 +69,12 @@ function App() {
             id="input"
             type="text"
             value={username}
-            onChange={(e) => setUsername(e.target.value)} // Update username state
+            onChange={(e) => setUsername(e.target.value)}
             placeholder="Enter Twitter username"
             className="border-black/70 focus:outline-none focus:border-2 focus:shadow-[-10px_-10px_30px_4px_rgba(171,130,97,0.1),_10px_10px_30px_4px_rgba(171,130,97,0.15)] transition-all duration-300 focus:border-[#d8b69a] border-[1.55px] h-20 w-[40vw] p-5 text-xl font-fontChillTwo"
           />
           <button
-            onClick={handleFetchData} // Fetch data on button click
+            onClick={handleFetchData} // Fetch data
             className="font-fontChillOne h-20 w-40 hover:shadow-[-10px_-10px_30px_4px_rgba(171,130,97,0.1),_10px_10px_30px_4px_rgba(171,130,97,0.15)] transition-all duration-200 border-4 rounded text-2xl text-center border-[#ab8261] bg-[#ffffff]"
           >
             Let's Chill
