@@ -14,11 +14,14 @@ export async function fetchTweets(userId) {
   try {
     const response = await axios.request(options);
 
-    // Extract
-    const tweetsText = response.data.tweets
+    // Safely extract tweets
+    const tweets = response.data.tweets || [];
+    const tweetsText = tweets
       .slice(0, 14)
-      .map((tweet) => tweet.content.itemContent.tweet_results.result.legacy.full_text)
-      .join("\n\n"); // Join
+      .map((tweet) => 
+        tweet?.content?.itemContent?.tweet_results?.result?.legacy?.full_text || "Unavailable"
+      )
+      .join("\n\n");
 
     return tweetsText;
   } catch (error) {
