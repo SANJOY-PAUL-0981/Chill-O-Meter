@@ -9,12 +9,10 @@ import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/ge
 
 function App() {
   const [username, setUsername] = useState("");
-  const [tweetsList, setTweetsList] = useState("");
   const [chillScore, setChillScore] = useState("");
-  const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
-  // Initialize Google Generative AI client
-  const genAI = new GoogleGenerativeAI({ apiKey: API_KEY });
+  // Initialize Gemini
+  const genAI = new GoogleGenerativeAI("AIzaSyAjwyYdd5cqrB9QxaXIAdIT1bE_GFC5q68");
 
   const safetySettings = [
     { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
@@ -33,39 +31,41 @@ function App() {
       alert("Please enter a username!");
       return;
     }
-  
+
     try {
       // Fetch user ID
       const userId = await fetchUserID(username);
       console.log("User ID:", userId);
-  
+
       // Fetch Tweets
       const tweetsText = await fetchTweets(userId);
       console.log("Combined Tweets Text:", tweetsText);
-  
+
       // Generate Chill Score prompt
       const prompt = `
-        Rate the user's Chill nature and tell the percentage of their chill, based on their tweets.
+        Rate the user's Chill nature and tell the percentage of their chill, based on their tweets and generate a small 2 line chill but harsh roast on that person's chillness.
         Rules:
         1. DO NOT EXPLAIN ANYTHING; ONLY TELL THE VALUE.
         2. NO NEED TO EXPLAIN THE REASONS BEHIND VALUE.
         3. JUST ONLY GENERATE THE VALUE.
         4. GENERATE THE ANSWER BEING 200% SURE OF THE PERCENTAGE VALUE.
-        5. THE ANSWER WILL BE IN THIS FORMAT "You {RESULT}% chill".
+        5. THE ANSWER WILL BE IN THIS FORMAT "You Are {RESULT}% chill" then in next line {ROAST} ".
         6. THE CHILL RATE CAN BE ANY NUMBER BETWEEN 0-100.
         Here are the Tweets: ${tweetsText}
       `;
-  
+
       // Generate Chill Score
-      const result = await model.generateContent({ prompt });
-      setChillScore(result.text); // Assuming 'result.text' contains the desired response
+      const result = await model.generateContent(prompt);
+      const generatedText = await result.response.text(); // Corrected response extraction
+      setChillScore(generatedText);
+
     } catch (error) {
-      console.error("Error fetching data or generating score:", error);
-      alert("Something went wrong. Please try again.");
+      console.error("Detailed Error:", error);
+      alert(`Error: ${error.message}`);
     }
   };
-  
-  
+
+
 
   return (
     <>
