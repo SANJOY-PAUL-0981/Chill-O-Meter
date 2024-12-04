@@ -97,7 +97,7 @@ function App() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Enter Twitter username"
-            className="border-black/70 focus:outline-none focus:border-2 focus:shadow-[-10px_-10px_30px_4px_rgba(171,130,97,0.1),_10px_10px_30px_4px_rgba(171,130,97,0.15)] transition-all duration-300 focus:border-[#d8b69a] border-[1.55px] h-16 md:h-20 w-[90vw] md:w-[40vw] p-5 text-lg md:text-xl font-fontChillTwo"
+            className="border-black/70 font-bold focus:outline-none focus:border-2 focus:shadow-[-10px_-10px_30px_4px_rgba(171,130,97,0.1),_10px_10px_30px_4px_rgba(171,130,97,0.15)] transition-all duration-300 focus:border-[#d8b69a] border-[1.55px] h-16 md:h-20 w-[90vw] md:w-[40vw] p-5 text-lg md:text-xl font-fontChillTwo"
           />
           <button
             onClick={handleFetchData}
@@ -116,7 +116,7 @@ function App() {
         chillScore && (
           <div className="text-center text-sm md:text-lg p-10 flex justify-center items-center">
             <div className="w-[90vw] md:w-[45vw]">
-              <h2 className="text-2xl md:text-3xl font-fontChillOne">{chillScore}</h2>
+              <h2 className="text-2xl md:text-3xl font-fontChillTwo font-bold">{chillScore}</h2>
             </div>
           </div>
         )
