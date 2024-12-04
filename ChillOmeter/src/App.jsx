@@ -10,8 +10,8 @@ import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/ge
 function App() {
   const [username, setUsername] = useState("");
   const [chillScore, setChillScore] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // Initialize Gemini
   const genAI = new GoogleGenerativeAI("AIzaSyAjwyYdd5cqrB9QxaXIAdIT1bE_GFC5q68");
 
   const safetySettings = [
@@ -32,16 +32,12 @@ function App() {
       return;
     }
 
+    setLoading(true);
+
     try {
-      // Fetch user ID
       const userId = await fetchUserID(username);
-      console.log("User ID:", userId);
-
-      // Fetch Tweets
       const tweetsText = await fetchTweets(userId);
-      console.log("Combined Tweets Text:", tweetsText);
 
-      // Generate Chill Score prompt
       const prompt = `
         Rate the user's Chill nature and tell the percentage of their chill, based on their tweets and generate a small 2 line chill but harsh roast on that person's chillness.
         Rules:
@@ -49,30 +45,27 @@ function App() {
         2. NO NEED TO EXPLAIN THE REASONS BEHIND VALUE.
         3. JUST ONLY GENERATE THE VALUE.
         4. GENERATE THE ANSWER BEING 200% SURE OF THE PERCENTAGE VALUE.
-        5. THE ANSWER WILL BE IN THIS FORMAT "You Are {RESULT}% chill" then in next line {ROAST} ".
+        5. THE ANSWER WILL BE IN THIS FORMAT "You Are {RESULT}% chill." then in next line {ROAST} .
         6. THE CHILL RATE CAN BE ANY NUMBER BETWEEN 0-100.
         Here are the Tweets: ${tweetsText}
       `;
 
-      // Generate Chill Score
       const result = await model.generateContent(prompt);
-      const generatedText = await result.response.text(); // Corrected response extraction
+      const generatedText = await result.response.text();
       setChillScore(generatedText);
-
     } catch (error) {
       console.error("Detailed Error:", error);
       alert(`Error: ${error.message}`);
+    } finally {
+      setLoading(false);
     }
   };
-
-
 
   return (
     <>
       <NavBar />
       <div className="flex flex-col justify-center items-center h-[90vh] mb-20">
         <div className="border-2 border-amber-800/20 w-[80vw] h-[80vh] rounded-3xl flex justify-between items-center p-14 gap-10 shadow-[-10px_-10px_30px_4px_rgba(171,130,97,0.1),_10px_10px_30px_4px_rgba(171,130,97,0.45)]">
-          {/* Hero Text */}
           <div>
             <div className="w-[40vw] flex flex-col gap-5">
               <h1 className="text-7xl font-fontChillOne">Are You Just A Chill Guy?</h1>
@@ -80,7 +73,6 @@ function App() {
                 <span>How Chill Are You?</span> Let’s Measure Your Chillness with the help of Chill O Meter!
               </p>
             </div>
-            {/* Button */}
             <a
               href="#input"
               className="font-fontChillTwo text-xl text-blue-500 font-semibold underline"
@@ -89,15 +81,13 @@ function App() {
             </a>
           </div>
 
-          {/* Hero Img */}
           <div>
             <img src={chillGuy} alt="chillguy" className="size-96 rounded-3xl" />
           </div>
         </div>
       </div>
 
-      {/* Input Area */}
-      <div className="h-[70vh] flex justify-center items-center">
+      <div className="h-[40vh] flex justify-center items-center">
         <div className="flex items-center gap-5">
           <input
             id="input"
@@ -116,11 +106,18 @@ function App() {
         </div>
       </div>
 
-      {/* Display Chill Score */}
-      {chillScore && (
-        <div className="text-center mt-10">
-          <h2 className="text-3xl font-fontChillOne">{chillScore}</h2>
+      {loading ? (
+        <div className="text-center p-10 flex justify-center items-center">
+          <img src="../src/assets/loading.gif" alt="Loading..." className="loader size-40" />
         </div>
+      ) : (
+        chillScore && (
+          <div className="text-center text-lg p-10 flex justify-center items-center">
+            <div className="w-[45vw]">
+              <h2 className="text-3xl font-fontChillOne">{chillScore}</h2>
+            </div>
+          </div>
+        )
       )}
 
       <Footer />

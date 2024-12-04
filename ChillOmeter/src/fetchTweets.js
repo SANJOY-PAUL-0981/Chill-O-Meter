@@ -17,7 +17,7 @@ export async function fetchTweets(userId) {
     // Safely extract tweets
     const tweets = response.data.tweets || [];
     const tweetsText = tweets
-      .slice(0, 14)
+      .slice(0, 19)
       .map((tweet) => 
         tweet?.content?.itemContent?.tweet_results?.result?.legacy?.full_text || "Unavailable"
       )
