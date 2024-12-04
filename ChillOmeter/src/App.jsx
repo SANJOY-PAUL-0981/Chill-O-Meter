@@ -65,7 +65,7 @@ function App() {
     <>
       <NavBar />
       <div className="flex flex-col justify-center items-center h-[90vh] mb-20 md:mb-10">
-        <div className="border-2 border-amber-800/20 w-[90vw] md:w-[80vw] xl:h-[80vh] h-[100vh] md:h-auto rounded-3xl flex flex-col md:flex-row justify-between items-center xl:p-8 p-8 xl:px-10 md:p-14 xl:gap-20 shadow-[-10px_-10px_30px_4px_rgba(171,130,97,0.1),_10px_10px_30px_4px_rgba(171,130,97,0.45)]">
+        <div className="border-2 border-amber-800/20 w-[90vw] md:w-[80vw] xl:h-[80vh] h-[100vh] md:h-auto rounded-3xl flex flex-col md:flex-row justify-between items-center xl:p-8 p-8 xl:px-10 md:p-14 xl:gap-20 gap-5 shadow-[-10px_-10px_30px_4px_rgba(171,130,97,0.1),_10px_10px_30px_4px_rgba(171,130,97,0.45)]">
 
           <div>
             <div className="flex flex-col gap-5 text-center md:text-left">
@@ -110,7 +110,7 @@ function App() {
 
       {loading ? (
         <div className="text-center p-10 flex justify-center items-center">
-          <img src="../src/assets/loading.gif" alt="Loading..." className="loader w-20 md:w-40" />
+          <img src="../public/loading.gif" alt="Loading..." className="loader w-20 md:w-40" />
         </div>
       ) : (
         chillScore && (
