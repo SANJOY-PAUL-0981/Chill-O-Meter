@@ -110,7 +110,7 @@ function App() {
 
       {loading ? (
         <div className="text-center p-10 flex justify-center items-center">
-          <img src="../public/loading.gif" alt="Loading..." className="loader w-20 md:w-40" />
+          <img src="/public/loading.gif" alt="Loading..." className="loader w-20 md:w-40" />
         </div>
       ) : (
         chillScore && (
